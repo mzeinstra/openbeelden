@@ -2,46 +2,41 @@ FORMAT: 1A
 HOST: http://www.openbeelden.nl
 
 # openbeelden
-Notes API is a *short texts saving* service similar to its physical paper presence on your table.
+This is a design for the Open Beelden API to guide the development process. It does not reflect the eventual Open Beelden API.
 
-# Group Notes
-Notes related resources of the **Notes API**
-
-## Notes Collection [/notes]
-### List all Notes [GET]
+# Group Media
+Most of these can be done by the current API of the S3 store
+## Media [/media]
+### List all Media [GET]
 + Response 200 (application/json)
 
-        [{
-          "id": 1, "title": "Jogging in park"
-        }, {
-          "id": 2, "title": "Pick-up posters from post-office"
-        }]
+        []
 
-### Create a Note [POST]
+### Upload Media [POST]
 + Request (application/json)
 
-        { "title": "Buy cheese and bread for breakfast." }
+        {  }
 
 + Response 201 (application/json)
 
-        { "id": 3, "title": "Buy cheese and bread for breakfast." }
+        {}
 
-## Note [/notes/{id}]
-A single Note object with all its details
+#Group Individual Media Items
 
-+ Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
-
-### Retrieve a Note [GET]
+## Media/{id} [/media/{id}]
+### Get individual Media record [GET]
 + Response 200 (application/json)
+    
+        []
 
-    + Header
+### Update individual Media Record [PUT]
 
-            X-My-Header: The Value
+### Delete individual Media Record [DELETE]
 
-    + Body
+#Group User
 
-            { "id": 2, "title": "Pick-up posters from post-office" }
+## User [/user]
 
-### Remove a Note [DELETE]
-+ Response 204
+### Get all users [GET]
+
+## Get individual User 
