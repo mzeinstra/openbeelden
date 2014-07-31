@@ -15,11 +15,46 @@ Most of these can be done by the current API of the S3 store
 ### Upload Media [POST]
 + Request (application/json)
 
-        {  }
+        { 
+            User : [
+                userDetails: "..."
+            ]
+            
+            metadata : [
+                title: "",
+                alternative: "",
+                subject: "",
+                description: "",
+                abstract: "",
+                publisher: "",
+                contributor: ["",""],
+                date: "",
+                type: "",
+                extent: "",
+                media: "",
+                identifier: "",
+                source: "",
+                language: "",
+                references: "",
+                spatial: ["",""],
+                attributionName: "",
+                attributionURL: "",
+                license: ""
+            ]
+        }
 
 + Response 201 (application/json)
 
-        {}
+        {
+            Status: "Success"
+            MediaId: ""
+        }
+
++ Response 400 (application/json)
+
+        {
+            Status: "Error occured"
+        }
 
 #Group Individual Media Items
 
@@ -30,14 +65,98 @@ Most of these can be done by the current API of the S3 store
         []
 
 ### Update individual Media Record [PUT]
++ Request (application/json)
+
+        { 
+            User : [
+                userDetails: "..."
+            ]
+                
+            Metadata : [
+                title: "",
+                alternative: "",
+                subject: "",
+                description: "",
+                abstract: "",
+                publisher: "",
+                contributor: ["",""],
+                date: "",
+                type: "",
+                extent: "",
+                media: "",
+                identifier: "",
+                source: "",
+                language: "",
+                references: "",
+                spatial: ["",""],
+                attributionName: "",
+                attributionURL: "",
+                license: ""
+            ]
+        }
++ Response 201 (application/json)
+
+        {
+            Status: "Success"
+            MediaId: ""
+        }
+
++ Response 400 (application/json)
+
+        {
+            Status: "Error occured"
+        }
 
 ### Delete individual Media Record [DELETE]
++ Request (application/json)
 
+        { 
+            User : [
+                userDetails: "..."
+            ]
+                
+            Metadata : [
+                mediaId: ""
+            ]
+        }
++ Response 201 (application/json)
+
+        {
+            Status: "Success"
+            MediaId: ""
+        }
+
++ Response 400 (application/json)
+
+        {
+            Status: "Error occured"
+        }
 #Group User
 
 ## User [/user]
 
 ### Get all users [GET]
++ request (application/json)
+
++ Response 200 (vnd.collection+json)
+
+        {
+            "collection": {
+                "version": "1.0",
+                "href": "http://www.openbeelden.nl/api/users/",
+                "items": [
+                    {
+                        "href": "http://www.openbeelden.nl/users/1/",
+                        "data": [
+                            {
+                                "user": "author",
+                                "value": "John Snow",
+                                "prompt": "Author"
+                            },
+                        ]
+                    }
+                }
+        }
 
 ### Create a new user [POST]
 
