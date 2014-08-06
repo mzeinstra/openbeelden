@@ -2,135 +2,8 @@ FORMAT: 1A
 HOST: http://www.openbeelden.nl
 
 # openbeelden
-This is a design for the Open Beelden API to guide the development process. It does not reflect the eventual Open Beelden API.
+This is a design for the Open Beelden API for user management to guide the development process. It does not reflect the eventual Open Beelden API.
 
-# Group Media
-Most of these can be done by the current API of the S3 store
-## Media [/media]
-### List all Media [GET]
-+ Response 200 (application/json)
-
-        []
-
-### Upload Media [POST]
-+ Request (application/json)
-
-        { 
-            User : [
-                userDetails: "..."
-            ]
-            
-            metadata : [
-                title: "",
-                alternative: "",
-                subject: "",
-                description: "",
-                abstract: "",
-                publisher: "",
-                contributor: ["",""],
-                date: "",
-                type: "",
-                extent: "",
-                media: "",
-                identifier: "",
-                source: "",
-                language: "",
-                references: "",
-                spatial: ["",""],
-                attributionName: "",
-                attributionURL: "",
-                license: ""
-            ]
-        }
-
-+ Response 201 (application/json)
-
-        {
-            Status: "Success"
-            MediaId: ""
-        }
-
-+ Response 400 (application/json)
-
-        {
-            Status: "Error occured"
-        }
-
-#Group Individual Media Items
-
-## Media/{id} [/media/{id}]
-### Get individual Media record [GET]
-+ Response 200 (application/json)
-    
-        []
-
-### Update individual Media Record [PUT]
-+ Request (application/json)
-
-        { 
-            User : [
-                userDetails: "..."
-            ]
-                
-            Metadata : [
-                title: "",
-                alternative: "",
-                subject: "",
-                description: "",
-                abstract: "",
-                publisher: "",
-                contributor: ["",""],
-                date: "",
-                type: "",
-                extent: "",
-                media: "",
-                identifier: "",
-                source: "",
-                language: "",
-                references: "",
-                spatial: ["",""],
-                attributionName: "",
-                attributionURL: "",
-                license: ""
-            ]
-        }
-+ Response 201 (application/json)
-
-        {
-            Status: "Success"
-            MediaId: ""
-        }
-
-+ Response 400 (application/json)
-
-        {
-            Status: "Error occured"
-        }
-
-### Delete individual Media Record [DELETE]
-+ Request (application/json)
-
-        { 
-            User : [
-                userDetails: "..."
-            ]
-                
-            Metadata : [
-                mediaId: ""
-            ]
-        }
-+ Response 201 (application/json)
-
-        {
-            Status: "Success"
-            MediaId: ""
-        }
-
-+ Response 400 (application/json)
-
-        {
-            Status: "Error occured"
-        }
 #Group User
 
 ## User [/user]
@@ -160,29 +33,170 @@ Most of these can be done by the current API of the S3 store
 
 ### Create a new user [POST]
 
++ Request (application/json)
+
+        { 
+            User : [
+                Gebruikersnaam : ""
+                Email : ""
+                Voornaam : ""
+                Achternaam: ""
+                Organisatienaam : ""
+                Bio : ""
+                Standaardlicentie: "http://creativeommons.org/licenses/CC-BY/4.0/"
+            ]
+        }
+
++ Response 201 (application/json)
+
+        {
+            Status: "Success"
+            userID: "1"
+        }
+
++ Response 400 (application/json)
+
+        {
+            Status: "Error occured"
+        }
+
 ## Get individual User  [/user/{id}]
 
 ### Get user details [GET]
 
++ Response 200 (vnd.collection+json)
+
+        {
+            "collection": {
+                "version": "1.0",
+                "href": "http://www.openbeelden.nl/api/users/{id}",
+                "items": [
+                    {
+                        "href": "http://www.openbeelden.nl/users/{id}/",
+                        "data": [
+                            {
+                                Gebruikersnaam : ""
+                                Email : ""
+                                Voornaam : ""
+                                Achternaam: ""
+                                Organisatienaam : ""
+                                Bio : ""
+                                Standaardlicentie: "http://creativeommons.org/licenses/CC-BY/4.0/"
+                            },
+                        ]
+                    }
+                }
+        }
+
 ### Update user details [PUT]
+
++ Request (application/json)
+
+        { 
+            User : [
+                Gebruikersnaam : ""
+                Email : ""
+                Voornaam : ""
+                Achternaam: ""
+                Organisatienaam : ""
+                Bio : ""
+                Standaardlicentie: "http://creativeommons.org/licenses/CC-BY/4.0/"
+            ]
+        }
+
++ Response 201 (application/json)
+
+        {
+            Status: "Success"
+            userID: "1"
+        }
+
++ Response 400 (application/json)
+
+        {
+            Status: "Error occured"
+        }
 
 ### Delete user [DELETE]
 
-## User Rights
++ Response 201 (application/json)
+
+        {
+            Status: "Success"
+            userID: "1"
+        }
+
++ Response 400 (application/json)
+
+        {
+            Status: "Error occured"
+        }
+
+## User Rights [/user/{id}/rights]
 
 ### Get user Rights [GET]
 
-### Update user rights [DELETE]
++ Response 200 (vnd.collection+json)
 
-#Group Playlists
-Playlist are created by users or by managers (for portals and APIs)
+        {
+            "collection": {
+                "version": "1.0",
+                "href": "http://www.openbeelden.nl/api/users/{id}/rights",
+                "rights": ""
+            }
+        }
 
-## Playlists [/user/{user_id}/playlist]
+### Update user rights [PUT]
 
-### Get all playlist from a particular user [GET]
++ Request (application/json)
 
-### Create new playlist for a individual user [POST]
+        { 
+            Rights : ""
+        }
+        
++ Response 201 (application/json)
 
-### Update a pla
+        {
+            Status: "Success"
+            userID: "1"
+        }
 
-## Individual Playlists [/user/{user_Id}/playlist/{playlis_id}]
++ Response 400 (application/json)
+
+        {
+            Status: "Error occured"
+        }
+
+## User API KEY [/user/{id}/APIKey]
+
+### Get user API Key [GET]
+
++ Response 200 (vnd.collection+json)
+
+        {
+            "collection": {
+                "version": "1.0",
+                "href": "http://www.openbeelden.nl/api/users/{id}/rights",
+                "api_key": ""
+            }
+        }
+
+### Update user API Key [PUT]
+
++ Request (application/json)
+
+        { 
+        }
+        
++ Response 201 (application/json)
+
+        {
+            Status: "Success"
+            api_key: ""
+        }
+
++ Response 400 (application/json)
+
+        {
+            Status: "Error occured"
+        }
