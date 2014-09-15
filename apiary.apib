@@ -87,6 +87,7 @@ This is a design for the Open Beelden API for user management to guide the devel
                     }
                 }
         }
+        
 
 ### Update user details [PUT]
 
@@ -131,6 +132,32 @@ This is a design for the Open Beelden API for user management to guide the devel
         {
             Status: "Error occured"
         }
+
+
+## Get individual User Media  [/user/{id}/media]
+
+### Get user details [GET]
+
++ Response 200 (vnd.collection+json)
+
+        {
+            "collection": {
+                "version": "1.0",
+                "href": "http://www.openbeelden.nl/api/users/{id}",
+                "items": [
+                    {
+                        "href": "http://www.openbeelden.nl/media/{media-id}/",
+                        "data": [
+                            {
+                                title : ""
+                                downloadlinks : []
+                            },
+                        ]
+                    }
+                }
+        }
+        
+
 
 ## User Rights [/user/{id}/rights]
 
