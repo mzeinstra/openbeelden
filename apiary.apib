@@ -156,28 +156,6 @@ This is a design for the Open Beelden API for user management to guide the devel
                     }
                 }
         }
-
-## User Rights [/user/{id}/rights]
-
-### Get user Rights [GET]
-
-+ Response 200 (vnd.collection+json)
-
-        {
-            "collection": {
-                "version": "1.0",
-                "href": "http://www.openbeelden.nl/api/users/{id}/rights",
-                "rights": ""
-            }
-        }
-
-### Update user rights [PUT]
-
-+ Request (application/json)
-
-        { 
-            Rights : ""
-        }
         
 + Response 201 (application/json)
 
